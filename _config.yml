@@ -1,5 +1,5 @@
-theme: jekyll-theme-cayman
 title: "BiSID-10: A Bimodal Dataset for Seed Classification from Visible and Near-Infrared Imaging"
 description: "Maksim Kukushkin, Martin Bogdan, Simon Goertz, Matthias Enders, and Thomas Schmid"
 email: kukushkin@informatik.uni-leipzig.de
-show_downloads: false
+theme: jekyll-theme-cayman
+show_downloads: true
