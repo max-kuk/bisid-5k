@@ -6,12 +6,20 @@
 
 ---
 
-## **Data Collection and Processing**
+### **Data Collection and Processing**
+
+---
 
 ### **Format**
 
+---
+
 ### **Examples**
 
+---
+
 ### **Acknowledgments**
+
+---
 
 ### **Citation**
