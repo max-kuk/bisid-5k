@@ -23,11 +23,6 @@ BiSID-5K
                     /HsScan.bil
                     /HsScan.bil.hdr
                 /RGB_Raw.jpg
-            /2
-                /HS_Raw.zip
-                    /HsScan.bil
-                    /HsScan.bil.hdr
-                /RGB_Raw.jpg
             ...
             /500
                 /HS_Raw.zip
