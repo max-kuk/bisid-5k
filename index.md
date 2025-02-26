@@ -12,6 +12,73 @@
 
 ### **Format**
 
+The BiSID-5K dataset has the following format:
+
+```
+BiSID-5K
+    /images
+        /Alopecurus myosuroides
+            /1
+                /HS_Raw.zip
+                    /HsScan.bil
+                    /HsScan.bil.hdr
+                /RGB_Raw.jpg
+            /2
+                /HS_Raw.zip
+                    /HsScan.bil
+                    /HsScan.bil.hdr
+                /RGB_Raw.jpg
+            ...
+            /image_n.jpg
+        /Alopecurus pratensis
+            /1
+                /HS_Raw.zip
+                    /HsScan.bil
+                    /HsScan.bil.hdr
+                /RGB_Raw.jpg
+            /2
+                /HS_Raw.zip
+                    /HsScan.bil
+                    /HsScan.bil.hdr
+                /RGB_Raw.jpg
+            ...
+            /500
+                /HS_Raw.zip
+                    /HsScan.bil
+                    /HsScan.bil.hdr
+                /RGB_Raw.jpg
+        ...
+        /Trifolium pratense
+            /1
+                /HS_Raw.zip
+                    /HsScan.bil
+                    /HsScan.bil.hdr
+                /RGB_Raw.jpg
+            /2
+                /HS_Raw.zip
+                    /HsScan.bil
+                    /HsScan.bil.hdr
+                /RGB_Raw.jpg
+            ...
+            /500
+                /HS_Raw.zip
+                    /HsScan.bil
+                    /HsScan.bil.hdr
+                /RGB_Raw.jpg
+    /bg_images
+        /1
+            /HS_Raw.zip
+                /HsScan.bil
+                /HsScan.bil.hdr
+            /RGB_Raw.jpg
+        ...
+        /10
+            /HS_Raw.zip
+                /HsScan.bil
+                /HsScan.bil.hdr
+            /RGB_Raw.jpg
+```
+
 ---
 
 ### **Examples**
