@@ -373,7 +373,7 @@
     <div class="main-content">
       <div class="abstract">
         <h3>Abstract</h3>
-        <p>This paper introduces HyperMed-X, a novel hyperspectral medical imaging dataset for computer vision research in medical diagnostics. Our dataset comprises 10,000 hyperspectral images across 15 tissue types, captured using state-of-the-art equipment with 128 spectral bands between 450-950nm. The dataset includes expert annotations for tissue classification, disease detection, and segmentation tasks. We establish benchmark models and demonstrate the utility of this dataset for advancing medical image analysis in both research and clinical settings. HyperMed-X enables new possibilities for automated diagnosis, surgical guidance, and tissue characterization applications.</p>
+        <p>to-do: add abstract</p>
       </div>
 
     
@@ -428,44 +428,54 @@
       <h2 class="header">Annotations</h2>
       <div class="markdown">
       BiSID-5K
-          /images
-              /Alopecurus myosuroides
-                  /1
-                      /HS_Raw.zip
-                          /HsScan.bil
-                          /HsScan.bil.hdr
-                      /RGB_Raw.jpg
-                  ...
-                  /500
-                      /HS_Raw.zip
-                          /HsScan.bil
-                          /HsScan.bil.hdr
-                      /RGB_Raw.jpg
-              ...
-              /Trifolium pratense
-                  /1
-                      /HS_Raw.zip
-                          /HsScan.bil
-                          /HsScan.bil.hdr
-                      /RGB_Raw.jpg
-                  ...
-                  /500
-                      /HS_Raw.zip
-                          /HsScan.bil
-                          /HsScan.bil.hdr
-                      /RGB_Raw.jpg
-          /bg_images
-              /1
-                  /HS_Raw.zip
-                      /HsScan.bil
-                      /HsScan.bil.hdr
-                  /RGB_Raw.jpg
-              ...
-              /10
-                  /HS_Raw.zip
-                      /HsScan.bil
-                      /HsScan.bil.hdr
-                  /RGB_Raw.jpg
+      |
+      ├── /images
+      |   |
+      |   ├── /Alopecurus myosuroides
+      |   |   |
+      |   |   ├── /1
+      |   |   |   ├── /HS_Raw.zip
+      |   |   |   ├── /HsScan.bil
+      |   |   |   ├── /HsScan.bil.hdr
+      |   |   |   └── /RGB_Raw.jpg
+      |   |   |   ...
+      |   |   |
+      |   |   └── /500
+      |   |       ├── /HS_Raw.zip
+      |   |       ├── /HsScan.bil
+      |   |       ├── /HsScan.bil.hdr
+      |   |       └── /RGB_Raw.jpg
+      |   |       ...
+      |   |
+      |   ├── /Trifolium pratense
+      |   |   |
+      |   |   ├── /1
+      |   |   |   ├── /HS_Raw.zip
+      |   |   |   ├── /HsScan.bil
+      |   |   |   ├── /HsScan.bil.hdr
+      |   |   |   └── /RGB_Raw.jpg
+      |   |   |   ...
+      |   |   |
+      |   |   └── /500
+      |   |       ├── /HS_Raw.zip
+      |   |       ├── /HsScan.bil
+      |   |       ├── /HsScan.bil.hdr
+      |   |       └── /RGB_Raw.jpg
+      |   |
+      |   └── /bg_images
+      |       |
+      |       ├── /1
+      |       |   ├── /HS_Raw.zip
+      |       |   ├── /HsScan.bil
+      |       |   ├── /HsScan.bil.hdr
+      |       |   └── /RGB_Raw.jpg
+      |       |   ...
+      |       |
+      |       └── /10
+      |           ├── /HS_Raw.zip
+      |           ├── /HsScan.bil
+      |           ├── /HsScan.bil.hdr
+      |           └── /RGB_Raw.jpg
             </div>
 
       <h2 class="header">Benchmark Results</h2>
@@ -482,19 +492,19 @@
         </thead>
         <tbody>
           <tr>
-            <td>HyperResNet</td>
+            <td>ResNet-18</td>
             <td>87.3%</td>
             <td>79.8%</td>
             <td>72.5%</td>
           </tr>
           <tr>
-            <td>SpectralUNet</td>
+            <td>ResNet-34</td>
             <td>85.1%</td>
             <td>77.6%</td>
             <td>78.9%</td>
           </tr>
           <tr>
-            <td>3D-HyperDenseNet</td>
+            <td>ResNet-50</td>
             <td>89.4%</td>
             <td>82.1%</td>
             <td>75.6%</td>
