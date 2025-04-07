@@ -2,4 +2,5 @@ title: "A Bimodal Image Dataset for Seed Classification from the Visible and Nea
 description: "Maksim Kukushkin, Martin Bogdan, Simon Goertz, Jan-Ole Callsen, Eric Oldenburg, Matthias Enders, and Thomas Schmid"
 email: kukushkin@informatik.uni-leipzig.de
 theme: jekyll-theme-cayman
+# google_analytics: [Your Google Analytics tracking ID]
 show_downloads: true

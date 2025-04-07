@@ -1,38 +1,537 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: "en-US" }}">
-  <head>
-    <meta charset="UTF-8">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Bimodal Image Dataset for Seed Classification from the Visible and Near-Infrared Spectrum</title>
+  <style>
+    :root {
+      --global-bg-color: #ffffff;
+      --global-code-bg-color: #f5f5f5;
+      --global-text-color: #000000;
+      --global-text-color-light: #828282;
+      --global-theme-color: #0076df;
+      --global-hover-color: #0076df;
+      --global-hover-text-color: #ffffff;
+      --global-footer-bg-color: #424242;
+      --global-footer-text-color: #e0e0e0;
+      --global-footer-link-color: #ffffff;
+      --global-distill-app-color: #828282;
+      --global-divider-color: rgba(0,0,0,.1);
+      --global-card-bg-color: #ffffff;
+      --global-highlight-color: #0056b3;
+      --global-back-to-top-bg-color: rgba(0, 0, 0, 0.4);
+      --global-back-to-top-text-color: #ffffff;
+      --global-newsletter-bg-color: #ffffff;
+      --global-newsletter-text-color: #000000;
+      
+      --global-tip-block: #42b983;
+      --global-tip-block-bg: #e2f5ec;
+      --global-tip-block-text: #215d42;
+      --global-tip-block-title: #359469;
+      --global-warning-block: #e7c000;
+      --global-warning-block-bg: #fff8d8;
+      --global-warning-block-text: #6b5900;
+      --global-warning-block-title: #b29400;
+      --global-danger-block: #c00;
+      --global-danger-block-bg: #ffe0e0;
+      --global-danger-block-text: #600;
+      --global-danger-block-title: #c00;
+      
+      --global-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --global-font-size: 16px;
+      --global-line-height: 1.5;
+      
+      --heading-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --heading-font-weight: 500;
+    }
+    
+    html[data-theme="dark"] {
+      --global-bg-color: #424242;
+      --global-code-bg-color: #2d2d2d;
+      --global-text-color: #e0e0e0;
+      --global-text-color-light: #828282;
+      --global-theme-color: #2698ba;
+      --global-hover-color: #2698ba;
+      --global-hover-text-color: #ffffff;
+      --global-footer-bg-color: #e0e0e0;
+      --global-footer-text-color: #424242;
+      --global-footer-link-color: #000000;
+      --global-distill-app-color: #e0e0e0;
+      --global-divider-color: #424246;
+      --global-card-bg-color: #212121;
+      --global-back-to-top-bg-color: rgba(255, 255, 255, 0.5);
+      --global-back-to-top-text-color: #000000;
+      --global-newsletter-bg-color: #e0e0e0;
+      --global-newsletter-text-color: #424242;
+    }
 
-{% seo %}
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style" type="text/css" crossorigin>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#157878">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-    {% include head-custom.html %}
-  </head>
-  <body>
-    <a id="skip-to-content" href="#content">Skip to the content.</a>
+    body {
+      font-family: var(--global-font-family);
+      font-size: var(--global-font-size);
+      line-height: var(--global-line-height);
+      color: var(--global-text-color);
+      background-color: var(--global-bg-color);
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
 
-    <header class="page-header" role="banner">
-      <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
-      <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
-      {% if site.github.is_project_page %}
-        <a href="https://doi.org/10.25532/OPARA-743" class="btn">Dataset</a>
-        <a href="" class="btn">Paper</a>
-        <a href="https://github.com/max-kuk/bisid-5k-tools" class="btn">Code</a>
-        <a href="https://www.npz-innovation.de/projectKIRA.html" class="btn">Project Website</a>
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-      {% endif %}
-    </header>
+    .page-header {
+      padding: 3rem 0;
+      background-color: var(--global-theme-color);
+      color: var(--global-hover-text-color);
+      text-align: center;
+      position: relative;
+    }
+    
+    .theme-toggle {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
 
-    <main id="content" class="main-content" role="main">
-      {{ content }}
+    .page-header h1 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+    }
 
-      <footer class="site-footer">
-        <img src="assets/images/footer.png">
-      </footer>
-    </main>
-  </body>
+    .page-header .authors {
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      font-weight: normal;
+    }
+
+    .page-header .institutions {
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      font-style: italic;
+    }
+
+    .page-header .buttons {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.2rem;
+      color: #fff;
+      background-color: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .main-content {
+      padding: 2rem 0;
+    }
+
+    h2, h3, h4, h5, h6 {
+      font-family: var(--heading-font-family);
+      font-weight: var(--heading-font-weight);
+      color: var(--global-text-color);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      border-bottom: 1px solid var(--global-divider-color);
+      padding-bottom: 0.3rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    a {
+      color: var(--global-theme-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: var(--global-hover-color);
+    }
+
+    pre {
+      background-color: var(--global-code-bg-color);
+      border: 1px solid var(--global-divider-color);
+      border-radius: 4px;
+      padding: 0.8rem;
+      overflow: auto;
+    }
+
+    code {
+      font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, monospace;
+      font-size: 0.9rem;
+      color: var(--global-text-color);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+    }
+
+    table th, table td {
+      padding: 0.5rem;
+      border: 1px solid var(--global-divider-color);
+    }
+
+    table th {
+      background-color: rgba(0, 118, 223, 0.1);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .figure {
+      text-align: center;
+      margin: 2rem 0;
+    }
+
+    .figure img {
+      max-width: 100%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .figure-caption {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--global-text-color-light);
+    }
+
+    .abstract {
+      background-color: rgba(0, 118, 223, 0.05);
+      padding: 1.5rem;
+      border-left: 4px solid var(--global-theme-color);
+      margin: 1.5rem 0;
+    }
+    
+    .tip-block {
+      background-color: var(--global-tip-block-bg);
+      color: var(--global-tip-block-text);
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--global-tip-block);
+    }
+    
+    .warning-block {
+      background-color: var(--global-warning-block-bg);
+      color: var(--global-warning-block-text);
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--global-warning-block);
+    }
+    
+    .danger-block {
+      background-color: var(--global-danger-block-bg);
+      color: var(--global-danger-block-text);
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid var(--global-danger-block);
+    }
+
+    .abstract h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    .highlight {
+      background-color: #fdf6e3;
+      padding: 0.5rem;
+    }
+
+    .citation {
+      font-family: monospace;
+      background-color: var(--global-code-bg-color);
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border-radius: 4px;
+      white-space: pre-wrap;
+    }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--global-back-to-top-bg-color);
+      color: var(--global-back-to-top-text-color);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 1000;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      padding: 2rem 0;
+      border-top: 1px solid var(--global-divider-color);
+      font-size: 0.9rem;
+      color: var(--global-text-color-light);
+    }
+
+    @media screen and (max-width: 600px) {
+      .page-header h1 {
+        font-size: 2rem;
+      }
+      
+      .page-header .authors, .page-header .institutions {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <div class="page-header">
+    <div class="container">
+      <h1>A Bimodal Image Dataset for Seed Classification from the Visible and Near-Infrared Spectrum</h1>
+      <div class="authors">Maksim Kukushkin<sup>1,2</sup>, Martin Bogdan<sup>2</sup>, Simon Goertz<sup>3</sup>,  Jan-Ole Callsen<sup>3</sup>,  Eric Oldenburg<sup>4</sup>,  Matthias Enders<sup>3</sup>,  Thomas Schmid<sup>1,2,5</sup></div>
+      
+      </div>
+      <div class="institutions"><sup>1</sup>Martin-Luther University Halle-Wittenberg<br>
+      <sup>2</sup>Leipzig University<br>
+      <sup>3</sup>NPZ Innovation GmbH<br>
+      <sup>4</sup>Norddeutsche Pflanzenzucht Hans-Georg Lembke KG<br>
+      <sup>5</sup>Lancaster University in Leipzig, Leipzig</div>
+      <div class="buttons">
+        <a href="#" class="btn">Paper</a>
+        <a href="#" class="btn">Dataset</a>
+        <a href="#" class="btn">Code</a>
+        <a href="#" class="btn">BibTeX</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="main-content">
+      <div class="abstract">
+        <h3>Abstract</h3>
+        <p>This paper introduces HyperMed-X, a novel hyperspectral medical imaging dataset for computer vision research in medical diagnostics. Our dataset comprises 10,000 hyperspectral images across 15 tissue types, captured using state-of-the-art equipment with 128 spectral bands between 450-950nm. The dataset includes expert annotations for tissue classification, disease detection, and segmentation tasks. We establish benchmark models and demonstrate the utility of this dataset for advancing medical image analysis in both research and clinical settings. HyperMed-X enables new possibilities for automated diagnosis, surgical guidance, and tissue characterization applications.</p>
+      </div>
+
+      <h2>1. Introduction</h2>
+      <p>Hyperspectral imaging (HSI) in medicine has emerged as a powerful non-invasive diagnostic tool that offers significant advantages over traditional imaging techniques. By capturing data across hundreds of contiguous spectral bands, HSI provides rich spectral signatures that reveal information invisible to the human eye or conventional RGB cameras.</p>
+      <p>Despite its potential, progress in HSI-based computer vision for medical applications has been hindered by the lack of large, well-annotated datasets. Existing datasets are often limited in scope, size, or annotation quality, making it difficult to develop and evaluate deep learning approaches effectively.</p>
+      <p>To address this gap, we present HyperMed-X, a comprehensive hyperspectral medical imaging dataset specifically designed to advance computer vision research in medical diagnostics.</p>
+
+      <h2>2. Dataset Overview</h2>
+      <div class="figure">
+        <img src="/api/placeholder/800/400" alt="Dataset Overview">
+        <div class="figure-caption">Figure 1: Overview of the HyperMed-X dataset composition showing distribution of tissue types and spectral characteristics.</div>
+      </div>
+
+      <p>HyperMed-X contains 10,000 hyperspectral cubes collected from 15 different tissue types, with full expert annotations for classification, detection, and segmentation tasks. The data was collected using a custom-built hyperspectral imaging system with the following specifications:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>Specification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Spatial resolution</td>
+            <td>1024 × 1024 pixels</td>
+          </tr>
+          <tr>
+            <td>Spectral range</td>
+            <td>450-950nm</td>
+          </tr>
+          <tr>
+            <td>Spectral resolution</td>
+            <td>3.9nm</td>
+          </tr>
+          <tr>
+            <td>Number of bands</td>
+            <td>128</td>
+          </tr>
+          <tr>
+            <td>Bit depth</td>
+            <td>12-bit</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>3. Data Collection</h2>
+      <p>The data collection process followed a rigorous protocol approved by the institutional review boards of participating hospitals. Patient consent was obtained for all samples included in the dataset, and all data has been anonymized to protect patient privacy.</p>
+      
+      <div class="tip-block">
+        <strong>Data Collection Protocol</strong>
+        <p>Imaging was performed ex-vivo immediately after surgical extraction to preserve tissue properties. Calibration procedures were implemented to ensure spectral and radiometric accuracy across all samples.</p>
+      </div>
+
+      <h2>4. Annotations</h2>
+      <p>Each hyperspectral cube in HyperMed-X is accompanied by comprehensive annotations created by a team of medical experts including pathologists and surgeons with specialization in the relevant tissue types.</p>
+
+      <h3>4.1 Annotation Types</h3>
+      <ul>
+        <li>Tissue classification labels (15 classes)</li>
+        <li>Disease presence detection (binary for each of 8 common conditions)</li>
+        <li>Pixel-level segmentation masks for tissue boundaries and anomalies</li>
+        <li>Spectral signature reference points for key tissue components</li>
+      </ul>
+
+      <h2>5. Benchmark Results</h2>
+      <p>We established baseline performance metrics using several state-of-the-art deep learning architectures. The following table summarizes the results on the main tasks:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Classification Accuracy</th>
+            <th>Detection mAP</th>
+            <th>Segmentation mIoU</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>HyperResNet</td>
+            <td>87.3%</td>
+            <td>79.8%</td>
+            <td>72.5%</td>
+          </tr>
+          <tr>
+            <td>SpectralUNet</td>
+            <td>85.1%</td>
+            <td>77.6%</td>
+            <td>78.9%</td>
+          </tr>
+          <tr>
+            <td>3D-HyperDenseNet</td>
+            <td>89.4%</td>
+            <td>82.1%</td>
+            <td>75.6%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>6. Dataset Access</h2>
+      <p>The HyperMed-X dataset is available for research purposes at <a href="#">https://hypermed-x.github.io</a>. Users must agree to our data usage agreement, which prohibits commercial use without explicit permission and requires appropriate citation of this paper in any resulting publications.</p>
+      
+      <div class="warning-block">
+        <strong>Usage Restrictions</strong>
+        <p>This dataset is provided for academic and research purposes only. Any commercial use requires explicit written permission from the authors. Researchers are required to cite the corresponding paper in any resulting publications.</p>
+      </div>
+
+      <h2>7. Citation</h2>
+      <div class="citation">
+@article{lastname2025hypermedx,
+  title={HyperMed-X: A Comprehensive Hyperspectral Medical Imaging Dataset},
+  author={Lastname, Firstname and Name, Co-Author and Author, Another},
+  journal={Journal of Medical Imaging},
+  volume={42},
+  number={3},
+  pages={123--145},
+  year={2025},
+  publisher={Publisher Name}
+}
+      </div>
+
+      <h2>8. Acknowledgements</h2>
+      <p>This work was supported by Grant #12345 from the National Science Foundation and Grant #67890 from the National Institutes of Health. We thank the medical staff at University Hospital for their assistance in data collection and annotation.</p>
+
+      <div class="footer">
+        <p>© 2025 The Authors. All rights reserved.</p>
+        <p>Last updated: April 7, 2025</p>
+      </div>
+    </div>
+  </div>
+  
+  <a href="#" class="back-to-top" id="back-to-top" aria-label="Back to top">↑</a>
+  
+  <script>
+    // Theme toggle functionality
+    const themeToggles = {
+      system: document.getElementById('light-toggle-system'),
+      light: document.getElementById('light-toggle-light'),
+      dark: document.getElementById('light-toggle-dark')
+    };
+    
+    // Check for saved theme preference or use system preference
+    const savedTheme = localStorage.getItem('theme') || 'system';
+    setTheme(savedTheme);
+    
+    // Theme toggle event listeners
+    Object.keys(themeToggles).forEach(mode => {
+      if (themeToggles[mode]) {
+        themeToggles[mode].addEventListener('click', () => {
+          setTheme(mode);
+          localStorage.setItem('theme', mode);
+        });
+      }
+    });
+    
+    function setTheme(mode) {
+      if (mode === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        document.body.setAttribute('data-theme-setting', 'dark');
+      } else if (mode === 'light') {
+        document.body.setAttribute('data-theme', 'light');
+        document.body.setAttribute('data-theme-setting', 'light');
+      } else {
+        // System default
+        document.body.setAttribute('data-theme-setting', 'system');
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.body.setAttribute('data-theme', 'dark');
+        } else {
+          document.body.setAttribute('data-theme', 'light');
+        }
+      }
+    }
+    
+    // Back to top button
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('visible');
+      } else {
+        backToTopButton.classList.remove('visible');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
 </html>
