@@ -282,6 +282,15 @@
       border-radius: 4px;
       white-space: pre-wrap;
     }
+
+    .markdown {
+      font-family: monospace;
+      background-color: var(--global-code-bg-color);
+      padding: 1rem;
+      margin: 1.5rem 0;
+      border-radius: 4px;
+      white-space: pre-wrap;
+    }
     
     .back-to-top {
       position: fixed;
@@ -412,15 +421,49 @@
       </div>
 
       <h2>4. Annotations</h2>
-      <p>Each hyperspectral cube in HyperMed-X is accompanied by comprehensive annotations created by a team of medical experts including pathologists and surgeons with specialization in the relevant tissue types.</p>
-
-      <h3>4.1 Annotation Types</h3>
-      <ul>
-        <li>Tissue classification labels (15 classes)</li>
-        <li>Disease presence detection (binary for each of 8 common conditions)</li>
-        <li>Pixel-level segmentation masks for tissue boundaries and anomalies</li>
-        <li>Spectral signature reference points for key tissue components</li>
-      </ul>
+      <div class="citation">
+ 
+      BiSID-5K
+          /images
+              /Alopecurus myosuroides
+                  /1
+                      /HS_Raw.zip
+                          /HsScan.bil
+                          /HsScan.bil.hdr
+                      /RGB_Raw.jpg
+                  ...
+                  /500
+                      /HS_Raw.zip
+                          /HsScan.bil
+                          /HsScan.bil.hdr
+                      /RGB_Raw.jpg
+              ...
+              /Trifolium pratense
+                  /1
+                      /HS_Raw.zip
+                          /HsScan.bil
+                          /HsScan.bil.hdr
+                      /RGB_Raw.jpg
+                  ...
+                  /500
+                      /HS_Raw.zip
+                          /HsScan.bil
+                          /HsScan.bil.hdr
+                      /RGB_Raw.jpg
+          /bg_images
+              /1
+                  /HS_Raw.zip
+                      /HsScan.bil
+                      /HsScan.bil.hdr
+                  /RGB_Raw.jpg
+              ...
+              /10
+                  /HS_Raw.zip
+                      /HsScan.bil
+                      /HsScan.bil.hdr
+                  /RGB_Raw.jpg
+      
+            </div>
 
       <h2>5. Benchmark Results</h2>
       <p>We established baseline performance metrics using several state-of-the-art deep learning architectures. The following table summarizes the results on the main tasks:</p>
@@ -466,16 +509,47 @@
 
       <h2>7. Citation</h2>
       <div class="citation">
-@article{lastname2025hypermedx,
-  title={HyperMed-X: A Comprehensive Hyperspectral Medical Imaging Dataset},
-  author={Lastname, Firstname and Name, Co-Author and Author, Another},
-  journal={Journal of Medical Imaging},
-  volume={42},
-  number={3},
-  pages={123--145},
-  year={2025},
-  publisher={Publisher Name}
-}
+```
+BiSID-5K
+    /images
+        /Alopecurus myosuroides
+            /1
+                /HS_Raw.zip
+                    /HsScan.bil
+                    /HsScan.bil.hdr
+                /RGB_Raw.jpg
+            ...
+            /500
+                /HS_Raw.zip
+                    /HsScan.bil
+                    /HsScan.bil.hdr
+                /RGB_Raw.jpg
+        ...
+        /Trifolium pratense
+            /1
+                /HS_Raw.zip
+                    /HsScan.bil
+                    /HsScan.bil.hdr
+                /RGB_Raw.jpg
+            ...
+            /500
+                /HS_Raw.zip
+                    /HsScan.bil
+                    /HsScan.bil.hdr
+                /RGB_Raw.jpg
+    /bg_images
+        /1
+            /HS_Raw.zip
+                /HsScan.bil
+                /HsScan.bil.hdr
+            /RGB_Raw.jpg
+        ...
+        /10
+            /HS_Raw.zip
+                /HsScan.bil
+                /HsScan.bil.hdr
+            /RGB_Raw.jpg
+```
       </div>
 
       <h2>8. Acknowledgements</h2>
