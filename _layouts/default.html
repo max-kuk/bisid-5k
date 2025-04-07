@@ -285,7 +285,7 @@
 
     .markdown {
       font-family: monospace;
-      background-color: var(--global-code-bg-color);
+      background-color: #f8f8f8;
       padding: 1rem;
       margin: 1.5rem 0;
       border-radius: 4px;
@@ -325,6 +325,11 @@
 
     .home-btn:hover {
       color: var(--global-hover-text-color);
+    }
+
+    .header {
+      color: #159957;
+     
     }
 
     .footer {
@@ -373,7 +378,7 @@
       <p>Despite its potential, progress in HSI-based computer vision for medical applications has been hindered by the lack of large, well-annotated datasets. Existing datasets are often limited in scope, size, or annotation quality, making it difficult to develop and evaluate deep learning approaches effectively.</p>
       <p>To address this gap, we present HyperMed-X, a comprehensive hyperspectral medical imaging dataset specifically designed to advance computer vision research in medical diagnostics.</p>
 
-      <h2>2. Dataset Overview</h2>
+      <h2 class="header">2. Dataset Overview</h2>
       <div class="figure">
         <img src="assets/images/dataset_overview.jpg" alt="Dataset Overview">
         <div class="figure-caption">Figure 1: Overview of the BiSID-5k dataset.</div>
@@ -412,7 +417,7 @@
         </tbody>
       </table>
 
-      <h2>3. Data Collection</h2>
+      <h2 class="header">3. Data Collection</h2>
       <p>The data collection process followed a rigorous protocol approved by the institutional review boards of participating hospitals. Patient consent was obtained for all samples included in the dataset, and all data has been anonymized to protect patient privacy.</p>
       
       <div class="tip-block">
@@ -420,7 +425,7 @@
         <p>Imaging was performed ex-vivo immediately after surgical extraction to preserve tissue properties. Calibration procedures were implemented to ensure spectral and radiometric accuracy across all samples.</p>
       </div>
 
-      <h2>4. Annotations</h2>
+      <h2 class="header">4. Annotations</h2>
       <div class="citation">
  
       BiSID-5K
@@ -465,7 +470,7 @@
       
             </div>
 
-      <h2>5. Benchmark Results</h2>
+      <h2 class="header">5. Benchmark Results</h2>
       <p>We established baseline performance metrics using several state-of-the-art deep learning architectures. The following table summarizes the results on the main tasks:</p>
 
       <table>
@@ -499,7 +504,7 @@
         </tbody>
       </table>
 
-      <h2>6. Dataset Access</h2>
+      <h2 class="header">6. Dataset Access</h2>
       <p>The HyperMed-X dataset is available for research purposes at <a href="#">https://hypermed-x.github.io</a>. Users must agree to our data usage agreement, which prohibits commercial use without explicit permission and requires appropriate citation of this paper in any resulting publications.</p>
       
       <div class="warning-block">
@@ -507,7 +512,7 @@
         <p>This dataset is provided for academic and research purposes only. Any commercial use requires explicit written permission from the authors. Researchers are required to cite the corresponding paper in any resulting publications.</p>
       </div>
 
-      <h2>7. Citation</h2>
+      <h2 class="header">7. Citation</h2>
       <div class="citation">
 ```
 BiSID-5K
@@ -552,7 +557,7 @@ BiSID-5K
 ```
       </div>
 
-      <h2>8. Acknowledgements</h2>
+      <h2 class="header">8. Acknowledgements</h2>
       <p>This work is supported by funds from the German Federal Ministry of Food and Agriculture (BMEL), based on a decision of the Parliament of the Federal Republic of Germany. The German Federal Office for Agriculture and Food (BLE) provides coordinating support for artificial intelligence (AI) in agriculture as the funding organisation, grant number 28DK116C20. The dataset was created as part of the research project “KIRa - KI-gestützte Plattform zur Klassifikation und Sortierung von Pflanzensamen: Bewertung der Saatgutreinheit am Musterfall Raps" (engl. "AI-supported platform for classifying and sorting plant seeds: Evaluation of seed purity using oilseed rape as a model case").
 </p>
 
