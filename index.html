@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <meta charset="utf-8">
+  <meta name="description"
+    content="A bimodal image dataset for seed classification from the visible and near-infrared spectrum">
+  <meta name="author" content="Maksim Kukushkin">
+  <meta name="keywords"
+    content="BiSID-5k, Dataset, Seed Classification, Visible Spectrum, Near-Infrared Spectrum, Machine Learning, Computer Vision">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A bimodal image dataset for seed classification from the visible and near-infrared spectrum</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <!-- Primary SVG favicon (modern browsers) -->
+  <link rel="icon" href="./static/images/favicon.svg" type="image/svg+xml">
+  <!-- Fallback PNG favicon (for older/unsupported SVG browsers) -->
+  <link rel="icon" type="image/png" href="./static/images/favicon-32x32.png">
+  <!-- Apple touch icon (for iOS home screen bookmarks) -->
+  <link rel="apple-touch-icon" href="./static/images/apple-touch-icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.26.0/plotly.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" href="https://max-kuk.github.io/">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+        </a>
+
+
+      </div>
+    </div>
+  </nav>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">A bimodal image dataset for seed classification from the visible
+              and near-infrared spectrum</h1>
+            <div class="is-size-5 publication-authors">
+              <div class="column has-text-centered" style="padding-top: 0px;">
+                <span class="author-block">
+                  <a href="https://max-kuk.github.io">Maksim Kukushkin</a><sup>1,2</sup>,</span>
+                <span class="author-block">Martin Bogdan<sup>2</sup>,</span>
+                <span class="author-block">Simon Goertz<sup>3</sup>,</span>
+                <span class="author-block">Jan-Ole Callsen<sup>3</sup>,</span>
+                <span class="author-block">Eric Oldenburg<sup>4</sup>,</span>
+                <span class="author-block">Matthias Enders<sup>3,†</sup>,</span>
+                <span class="author-block">Thomas Schmid<sup>1,5,†</sup></span>
+
+              </div>
+            </div>
+            <div class="column has-text-centered">
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"><sup>1</sup>Martin Luther University Halle-Wittenberg,</span>
+                <span class="author-block"><sup>2</sup>Leipzig University,</span>
+                <span class="author-block"><sup>3</sup>NPZ Innovation GmbH,</span>
+                <span class="author-block"><sup>4</sup>Norddeutsche Pflanzenzucht Hans-Georg Lembke KG,</span>
+                <span class="author-block"><sup>5</sup>Lancaster University in Leipzig</span>
+              </div>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="is-size-6 publication-contribution">
+                <span class="author-block">
+                  <br>
+                  <sup>†</sup>these authors contributed equally to this work
+                </span>
+              </div>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-dark is-rounded">
+                    <span class="icon">
+                      <icon class="fas fa-file-pdf"></icon>
+                    </span>
+                    <span>Paper (coming soon)</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-dark is-rounded">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv (coming soon)</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/max-kuk/bisid-5k-tools"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. -->
+                <span class="link-block">
+                  <a href="https://opara.zih.tu-dresden.de/handle/123456789/1410"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="far fa-images"></i>
+                    </span>
+                    <span>Dataset</span>
+                  </a>
+                </span>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+  </section>
+  <!--
+  <section class="hero is-dark is-small">
+    <div class="hero-body">
+      <div class="container">
+        add video 
+        <div class="columns is-centered">
+          <div class="column is-two-thirds has-text-centered">
+           <video poster="./static/images/poster/seed_purity_testing.png" muted playsinline controls
+              alt="Seed Purity Testing Video" height="50%">
+              <source src="./static/videos/seed_purity_testing.mp4" type="video/mp4">
+            </video>
+
+            <h2 class="subtitle has-text-centered">
+              <br>A brief video introduction to labor-intensive manual seed purity testing. The goal of the <a
+                href="https://www.npz-innovation.de/projectKIRA.html">KIRa project</a> is
+              to train Machine Learning models to automate this process.
+            </h2>
+
+          </div>
+
+        </div>
+        
+  </section> -->
+
+
+  <h2 class="title is-3 band">BiSID-5k - bimodal dataset for seed classification</h2>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-4">Multi-Class</h2>
+          <div class="content has-text-justified">
+            <p> BiSID-5k is a high-quality, multi-class seed image dataset designed for advanced research in computer
+              vision and
+              agriculture. It features 5,000 expertly captured images—500 for each of ten seed species, including Black
+              grass
+              (<i>Alopecurus myosuroides</i> L.), Common knotgrass (<i>Polygonum aviculare</i> L.), Common hemp-nettle
+              (<i>Galeopsis
+                tetrahit</i> L.), Bistort (<i>Bistorta officinalis</i> L.), Red campion (<i>Silene dioica</i> L.), Red
+              clover
+              (<i>Trifolium pratense</i> L.), Herb robert (<i>Geranium robertianum</i> L.), Common chickweed
+              (<i>Stellaria media</i>
+              L.), Meadow foxtail (<i>Alopecurus pratensis</i> L.) and Winter oilseed rape (<i>Brassica napus</i> L.).
+              Each seed is
+              aquired in both visible and near-infrared spectra, providing rich, multimodal data for robust
+              analysis,
+              classification, and machine learning applications.
+            </p>
+            <h2 class="title is-4">Multi-Modal</h2>
+            <div class="content has-text-justified">
+              <p> Our dataset features a powerful bimodal design, pairing high-spatial resolution RGB images with the
+                rich spectral
+                information of hyperspectral (HS) data. Beyond these, the hyperspectral data unlocks even more
+                possibilities, enabling
+                the derivation of multispectral (MS) and spectroscopic modalities for further analysis of seed
+                characteristics.
+              </p>
+
+
+            </div>
+          </div>
+        </div>
+  </section>
+
+
+  <h2 class="title is-3 band">Experiments</h2>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-4">Baselines</h2>
+          <div class="content has-text-justified" style="text-align: center;">
+            <p> First, we trained Linear Regression, Decision Tree, Random Forest, and Multi-Layer Perceptron (MLP)
+              models on the
+              spectroscopic version of the BiSID-5k dataset to evaluate classification performance. Additionally, we
+              trained various
+              ResNet architectures (ResNet-18, ResNet-34, and ResNet-50) on the RGB, multispectral (MS), and
+              hyperspectral (HS)
+              modalities of the BiSID-5k dataset for performance evaluation.
+            </p>
+            <div id="model-chart" style="width:100%;height:600px;"></div>
+            <!-- Extended evaluation is available here. -->
+          </div>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-4">Impact of different spectral and spatial resolutions</h2>
+          <div class="content has-text-justified">
+
+            <p> To measure impact of spectral and spatial resolutions on the classification
+              performance, we trained each ResNet model on the BiSID-5k dataset with different
+              spectral and spatial resolutions.
+
+            </p>
+
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column" style="padding: 0;">
+          <div id="bar-chart" style="width: 100%; height: 500px;"></div>
+          <!-- Extended evaluation is available here. -->
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h2 class="title is-3 band">Acknowledgements</h2>
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="column is-full-width">
+
+        <!-- Concurrent Work. -->
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+
+
+            <div class="content has-text-justified">
+              <p>
+                We want to thank Denys Chaldykin (NPZ Innovation GmbH) for operating the seed image acquisition pipeline
+                and seed handling. This work is supported by funds from the German Federal Ministry of Food and
+                Agriculture (BMEL), based
+                on a decision of the Parliament of the Federal Republic of Germany. The German Federal Office for
+                Agriculture and Food
+                (BLE) provides
+                coordinating support for artificial intelligence (AI) in agriculture as the funding organisation, grant
+                number 28DK116C20. The
+                manuscript was created as part of the research project "KIRa - KI-gestützte Plattform zur Klassifikation
+                und Sortierung von Pflanzensamen: Bewertung der Saatgutreinheit am Musterfall Raps" (engl. "AI-supported
+                platform for
+                classifying and sorting plant seeds: Evaluation of seed purity using oilseed rape as a model case").
+                Further information about
+                the project can be found at <a
+                  href="https://www.npz-innovation.de/projectKIRA.html">npz-innovation.de/projectKIRA.html</a>.
+              </p>
+            </div>
+          </div>
+          <!--/ Concurrent Work. -->
+
+        </div>
+  </section>
+
+  <h2 class="title is-3 band">Citation</h2>
+  <section class="section" id="reference">
+    <div class="container is-max-desktop content">
+
+      <pre><code>
+      @misc{kukushkin2025bisid5k_dataset,
+      doi = {10.25532/OPARA-810},
+      url = {https://opara.zih.tu-dresden.de/handle/123456789/1410},
+      author = {Kukushkin, Maksim and Bogdan, Martin and Goertz, Simon and Callsen, Jan-Ole and Oldenburg, Eric and Enders,
+      Matthias and Schmid, Thomas},
+      title = {BiSID-5k: A Bimodal Image Dataset for Seed Classification from the Visible and Near-Infrared Spectrum},
+      publisher = {Universität Leipzig},
+      year = {2025},
+      copyright = {Creative Commons Attribution 4.0 International}
+      }
+      </code></pre>
+
+
+
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <img id="footer_image" src="./static/images/footer.svg" alt="Footer Image" width="100%">
+        </div>
+      </div>
+
+      <div class="columns is-centered">
+        <div class="column is-size-7">
+          <div class="content has-text-centered">
+            <p>
+              This website was adapted from the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
+              project page.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
